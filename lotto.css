@@ -12,6 +12,10 @@ h1 {
   font-size: 2rem;
   margin: 1em;
   font-weight: bold;
+  background-color: black;
+  width: 300px;
+  margin-right: auto;
+  margin-left: auto;
  }
 
  #container {

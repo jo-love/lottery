@@ -3,16 +3,16 @@ let blingCount = 0;
 
 function bling(){
   if (blingCount === 0) {
-    document.getElementById("title").style.color = '#d6806e';
+    document.getElementById("title").style.color = 'yellow';
     blingCount ++;
   } else if(blingCount === 1) {
-    document.getElementById("title").style.color = '#fbb666';
+    document.getElementById("title").style.color = '#ff9900';
     blingCount ++;
   }else if(blingCount === 2){
-    document.getElementById("title").style.color = '#f9f871';
+    document.getElementById("title").style.color = '#ff3300';
     blingCount ++;
   }else{
-    document.getElementById("title").style.color = '#f2ecff';
+    document.getElementById("title").style.color = '#9933ff';
     blingCount = 0;
   }
 }
@@ -21,35 +21,41 @@ setInterval(bling, 500);
 function extractNum() {
   let numArr = [];
   
-  //1~45까지의 숫자를 인덱스7개를 채울 때까지 무한정 반복
+  //1~45까지의 숫자를 인덱스7개를 채울 때까지 무한반복
   for( i = 0; numArr.length < 7; i++){
     let testNum = Math.floor(Math.random() * 45 + 1);
     if(numArr.indexOf(testNum) == -1) {
       numArr.push(testNum);
     }
   } 
- 
-  for( i = 0; i < 7; i++){
+  //numArr 배열에 들어있는 각 요소를 number변수로 지정하여 foreach구문으로 돌림.
+  numArr.forEach(function (number) {
+    //foreach문으로 돌려 받은 변수 number의 인덱스를 구한 변수.
+    let index = numArr.indexOf(number)
 
-    //지정해준 숫자에 맞는 색으로 바꿔준다.
-    if(numArr[i] < 10) {
-      document.getElementById("ball" + i).style.backgroundColor = "yellow";
-      document.getElementById("ball" + i).style.color = "black";
-    }else if(numArr[i] >= 10 && numArr[i] < 20) {
-      document.getElementById("ball" + i).style.backgroundColor = "blue";
-      document.getElementById("ball" + i).style.color = "white";
-    }else if(numArr[i] >= 20 && numArr[i] < 30) {
-      document.getElementById("ball" + i).style.backgroundColor = "red";
-      document.getElementById("ball" + i).style.color = "white";
-    }else if(numArr[i] >= 30 && numArr[i] < 40) {
-      document.getElementById("ball" + i).style.backgroundColor = "grey";
-      document.getElementById("ball" + i).style.color = "white";
-    }else if(numArr[i] >= 40 && numArr[i] < 46) {
-      document.getElementById("ball" + i).style.backgroundColor = "green";
-      document.getElementById("ball" + i).style.color = "white";
-    }
+    //셋타임 함수 시작.
+    setTimeout(function () {
+      //numArr에서 들어온 number의 숫자대로 색깔을 지정해주는 조건문.
+      if(numArr[index] < 10) {
+        document.getElementById("ball" + index).style.backgroundColor = "yellow";
+        document.getElementById("ball" + index).style.color = "black";
+      }else if(numArr[index] >= 10 && numArr[index] < 20) {
+        document.getElementById("ball" + index).style.backgroundColor = "blue";
+        document.getElementById("ball" + index).style.color = "white";
+      }else if(numArr[index] >= 20 && numArr[index] < 30) {
+        document.getElementById("ball" + index).style.backgroundColor = "red";
+        document.getElementById("ball" + index).style.color = "white";
+      }else if(numArr[index] >= 30 && numArr[index] < 40) {
+        document.getElementById("ball" + index).style.backgroundColor = "grey";
+        document.getElementById("ball" + index).style.color = "white";
+      }else if(numArr[index] >= 40 && numArr[index] < 46) {
+        document.getElementById("ball" + index).style.backgroundColor = "green";
+        document.getElementById("ball" + index).style.color = "white";
+      }
 
-     //인덱스 7개를 채운 숫자들을 html에 연결
-    document.getElementById("ball" + i).innerHTML = numArr[i];
-  }
+      //numArr에서 들어온 number를 해당 클래스에 번호를 넣어주는 코드.
+      document.getElementById("ball" + index).innerHTML = number;
+    }, 300 * index);
+  });
+
 }
